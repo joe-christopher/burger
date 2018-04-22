@@ -1,5 +1,6 @@
 var connection = require("../config/connection.js");
 
+//function creates ? for queries based on number of values needed
 function printQuestionMarks(num) {
   var arr = [];
 
@@ -32,9 +33,9 @@ function objToSql(ob) {
   return arr.toString();
 }
 
-// Object for all our SQL statement functions.
+// orm objects for SQL statement functions.
 var orm = {
-  all: function(tableInput, cb) {
+  selectAll: function(tableInput, cb) {
     var queryString = "SELECT * FROM " + tableInput + ";";
     connection.query(queryString, function(err, result) {
       if (err) {
@@ -43,7 +44,7 @@ var orm = {
       cb(result);
     });
   },
-  create: function(table, cols, vals, cb) {
+  insertOne: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
     queryString += " (";
@@ -62,7 +63,7 @@ var orm = {
     });
   },
   // UPDATE burgers SET devoured = true where id = id;
-  update: function(table, objColVals, condition, cb) {
+  updateOne: function(table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
