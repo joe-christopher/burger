@@ -13,7 +13,6 @@ else
 
     // Your username
     user: "root",
-
     // Your password
     password: "root",
     database: "burgers_db",
