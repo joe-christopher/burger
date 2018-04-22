@@ -27,7 +27,8 @@ $(function() {
     event.preventDefault();
 
     var newBurger = { burger_name: $("#addBurger").val().trim()};
-    console.log("newBurger = " + newBurger.burger_name);
+    //only POST if burger name length is >0
+    if (newBurger.burger_name.length > 0){
     // Send the POST request.
     $.ajax("/api/burgers", {
       type: "POST",
@@ -39,6 +40,7 @@ $(function() {
         location.reload();
       }
     );
+  }
   });
 
 });
